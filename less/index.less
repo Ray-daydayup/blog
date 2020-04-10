@@ -1,0 +1,77 @@
+@main-text-color: #24292e; //大容器的文字颜色
+@anchor-color: #1f8dc3; //标题锚链接的颜色
+@h1-h2-bdb-color: #eaecef; //h1 h2底边框颜色
+@a-color: #2d75ff; //a链接的颜色
+@a-bdb-color: #dbe2ef;
+// 头部
+.home-header {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	line-height: 60px;
+	a {
+		color: @main-text-color;
+		border-bottom: none;
+	}
+
+	a:active,
+	a:hover {
+		outline-width: 0;
+		color: @a-color;
+	}
+	.logo {
+		height: 60px;
+		padding: 0 0.1rem;
+		text-align: center;
+		img {
+			width: 100%;
+			max-width: 110px;
+			vertical-align: middle;
+		}
+	}
+	.menu {
+		text-align: center;
+		height: 60px;
+
+		a {
+			padding: 0 0.12rem;
+		}
+		.menu-not-lg {
+			width: 100%;
+			white-space: nowrap;
+			overflow-x: auto;
+		}
+	}
+}
+
+.personal-info {
+	text-align: center;
+	a {
+		display: block;
+		color: @main-text-color;
+		border: none;
+	}
+	.user-img {
+		display: inline-block;
+		width: 128px;
+		height: 128px;
+		border-radius: 50%;
+		overflow: hidden;
+		img {
+			width: 100%;
+		}
+	}
+	.nav-statistics {
+		h6 {
+			margin-top: 0.05rem;
+		}
+		h2 {
+			font-size: 0.32rem;
+		}
+	}
+}

@@ -1,0 +1,66 @@
+.home-header {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  line-height: 60px;
+}
+.home-header a {
+  color: #24292e;
+  border-bottom: none;
+}
+.home-header a:active,
+.home-header a:hover {
+  outline-width: 0;
+  color: #2d75ff;
+}
+.home-header .logo {
+  height: 60px;
+  padding: 0 0.1rem;
+  text-align: center;
+}
+.home-header .logo img {
+  width: 100%;
+  max-width: 110px;
+  vertical-align: middle;
+}
+.home-header .menu {
+  text-align: center;
+  height: 60px;
+}
+.home-header .menu a {
+  padding: 0 0.12rem;
+}
+.home-header .menu .menu-not-lg {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.personal-info {
+  text-align: center;
+}
+.personal-info a {
+  display: block;
+  color: #24292e;
+  border: none;
+}
+.personal-info .user-img {
+  display: inline-block;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.personal-info .user-img img {
+  width: 100%;
+}
+.personal-info .nav-statistics h6 {
+  margin-top: 0.05rem;
+}
+.personal-info .nav-statistics h2 {
+  font-size: 0.32rem;
+}
