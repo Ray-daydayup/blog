@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <!-- 头部导航栏 -->
   <header class="home-header">
     <div class="container height-100 clearfix">
       <div class="row">
@@ -54,11 +55,14 @@
 
 
   </header>
+  <!-- 主体内容 -->
   <div class="container">
+    <!-- 用来当作padding-top -->
     <div class="row visible-lg" style="height: 80px;"></div>
     <div class="row visible-md" style="height: 140px;"></div>
     <div class="row visible-sm" style="height: 125px;"></div>
     <div class="row">
+      <!-- 左边区域 -->
       <div class="col-3-slg col-4-md  hidden-sm">
         <div class="card-container">
           <div class="card-content personal-info">
@@ -66,7 +70,7 @@
               <img src="./favicon.ico" alt="">
             </div>
             <h2 class="font-regular">Raydaydayup</h2>
-            <p>好好学习，天天向上</p>
+            <p>👉好好学习，天天向上👈</p>
             <nav class="row nav-statistics">
               <!-- <div class="col-4-sm"></div> -->
               <a href="#" class="col-4-sm">
@@ -82,58 +86,59 @@
                 <h2 class="font-regular">6</h2>
               </a>
             </nav>
-            <hr>
+            <a href="#" class="row nav-github"><i class="iconfont icon-github-fill"></i><span>关注我</span></a>
             <nav class="row nav-contact">
-              <a href="#" class="col-3-sm">
-                <i class="iconfont icon-github-fill"></i>
+              <a href="#" class="col-4-sm">
+                <i class="iconfont icon-QQ"></i>
               </a>
-              <a href="#" class="col-3-sm">
-                <i class="iconfont icon-github-fill"></i>
+              <a href="#" class="col-4-sm">
+                <i class="iconfont icon-wechat-fill"></i>
               </a>
-              <a href="#" class="col-3-sm">
-                <i class="iconfont icon-github-fill"></i>
-              </a>
-              <a href="#" class="col-3-sm">
-                <i class="iconfont icon-github-fill"></i>
+              <a href="#" class="col-4-sm">
+                <i class="iconfont icon-mail-fill"></i>
               </a>
             </nav>
+            <hr>
+            <div class="words">
+              <p class="font-heavy">应付生活中各种问题的勇气</p>
+              <p class="font-heavy">能说明一个人如何定义生活的意义</p>
+              <p>——阿德勒</p>
+            </div>
           </div>
         </div>
         <div class="card-container hidden-slg">
           <div class="card-content">自我介绍2</div>
         </div>
       </div>
+      <!-- 中间文章列表 -->
       <div class="col-6-slg col-8-md">
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
-        <div class="card-container">
-          <div class="card-content">自我介绍</div>
-        </div>
+        <article class="article-list">
+          <div class="card-container">
+            <div class="card-content">
+              <div class="img-box">
+                <img src="./images/slider3.jpg">
+              </div>
+              <div class="abstract">
+                <div class="note-tips">
+                  <i class="iconfont icon-time-circle"></i>
+                  <h6 class="font-regular">2020-04-11</h6>
+                </div>
+                <a href="#" class="title">
+                  <h2>github Issue 作为博客微型数据库的应用</h2>
+                </a>
+                <p class="content">CDN的全称是Content Delivery
+                  Network，即内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。——百度百科
+
+                  放在Github的资源在国内加载速度比较慢，因此需要使用CDN加速来优化网站打开速度，jsDelivr + Github便是免费且好用的CDN，非常适合博客网站使用。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
       <!-- <div class="col-3-slg col-4-md visible-sm">
-        <div class="card-container">
-          <div class="card-content personal-info">自我介绍1</div>
-        </div>
-        <div class="card-container hidden-slg">
-          <div class="card-content">自我介绍2</div>
-        </div>
       </div> -->
+      <!-- 右边区域 -->
       <div class="col-3-slg visible-slg">
         <div class="card-container">
           <div class="card-content">自我介绍2</div>

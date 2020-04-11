@@ -1,4 +1,5 @@
 @main-text-color: #24292e; //大容器的文字颜色
+@other-text-color: #888; //大容器的文字颜色
 @anchor-color: #1f8dc3; //标题锚链接的颜色
 @h1-h2-bdb-color: #eaecef; //h1 h2底边框颜色
 @a-color: #2d75ff; //a链接的颜色
@@ -48,8 +49,10 @@
 		}
 	}
 }
-
+//个人信息
 .personal-info {
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem;
 	text-align: center;
 	a {
 		display: block;
@@ -64,6 +67,10 @@
 		overflow: hidden;
 		img {
 			width: 100%;
+			&:hover {
+				transition: transform 0.3s;
+				transform: scale(1.1);
+			}
 		}
 	}
 	.nav-statistics {
@@ -72,6 +79,74 @@
 		}
 		h2 {
 			font-size: 0.32rem;
+		}
+	}
+	.nav-github {
+		background-color: #276cda;
+		height: 35px;
+		margin: 0.05rem 0;
+		border-radius: 30px;
+		line-height: 35px;
+		color: #fff;
+		> span {
+			padding-left: 5px;
+		}
+	}
+	.nav-contact {
+		margin-top: 0.05rem;
+		i {
+			font-size: 0.2rem;
+		}
+	}
+	.words {
+		p:not(:last-child) {
+			color: #276cda;
+		}
+	}
+}
+//文章列表
+
+.article-list {
+	.card-content {
+		padding: 0;
+		overflow: hidden;
+	}
+	.img-box {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		height: 50%;
+		text-align: center;
+		max-height: 250px;
+		img {
+			width: 100%;
+		}
+	}
+	.abstract {
+		padding: 0.1rem 0.2rem;
+		background-color: #fff;
+		.note-tips {
+			color: @other-text-color;
+			i {
+				font-size: 0.12rem;
+			}
+			h6 {
+				display: inline;
+			}
+		}
+		.title {
+			display: block;
+			color: @main-text-color;
+			font-size: 0.32rem;
+			margin-bottom: 0.1rem;
+			border: none;
+			&:hover {
+				color: @a-color;
+				border: none;
+			}
+		}
+		.content {
+			text-align: justify;
 		}
 	}
 }

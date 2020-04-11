@@ -41,6 +41,8 @@
   overflow-x: auto;
 }
 .personal-info {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   text-align: center;
 }
 .personal-info a {
@@ -58,9 +60,75 @@
 .personal-info .user-img img {
   width: 100%;
 }
+.personal-info .user-img img:hover {
+  transition: transform 0.3s;
+  transform: scale(1.1);
+}
 .personal-info .nav-statistics h6 {
   margin-top: 0.05rem;
 }
 .personal-info .nav-statistics h2 {
   font-size: 0.32rem;
+}
+.personal-info .nav-github {
+  background-color: #276cda;
+  height: 35px;
+  margin: 0.05rem 0;
+  border-radius: 30px;
+  line-height: 35px;
+  color: #fff;
+}
+.personal-info .nav-github > span {
+  padding-left: 5px;
+}
+.personal-info .nav-contact {
+  margin-top: 0.05rem;
+}
+.personal-info .nav-contact i {
+  font-size: 0.2rem;
+}
+.personal-info .words p:not(:last-child) {
+  color: #276cda;
+}
+.article-list .card-content {
+  padding: 0;
+  overflow: hidden;
+}
+.article-list .img-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 50%;
+  text-align: center;
+  max-height: 250px;
+}
+.article-list .img-box img {
+  width: 100%;
+}
+.article-list .abstract {
+  padding: 0.1rem 0.2rem;
+  background-color: #fff;
+}
+.article-list .abstract .note-tips {
+  color: #888;
+}
+.article-list .abstract .note-tips i {
+  font-size: 0.12rem;
+}
+.article-list .abstract .note-tips h6 {
+  display: inline;
+}
+.article-list .abstract .title {
+  display: block;
+  color: #24292e;
+  font-size: 0.32rem;
+  margin-bottom: 0.1rem;
+  border: none;
+}
+.article-list .abstract .title:hover {
+  color: #2d75ff;
+  border: none;
+}
+.article-list .abstract .content {
+  text-align: justify;
 }
