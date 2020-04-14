@@ -7,8 +7,9 @@
   width: 100%;
   overflow: hidden;
   text-align: center;
+  height: 4rem;
 }
-.article-list .img-box img {
+.article-list .img-box > img {
   width: 100%;
 }
 .article-list .abstract {
@@ -58,12 +59,4 @@
 }
 .article-list .abstract .category-nav .level-item a:hover {
   color: #2d75ff;
-}
-.get-more {
-  padding: 0.05rem;
-  text-align: center;
-  font-size: 0.14rem;
-}
-.get-more a {
-  border: none;
 }
