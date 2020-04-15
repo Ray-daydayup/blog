@@ -17,9 +17,7 @@ const md = window
 			}
 
 			return (
-				'<pre class="hljs"><code>' +
-				md.utils.escapeHtml(str) +
-				"</code></pre>"
+				'<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>"
 			);
 		},
 	})
@@ -34,15 +32,4 @@ const md = window
 		permalinkClass: "anchor",
 		permalinkBefore: true,
 		permalinkSymbol: '<span class="octicon octicon-link"></span>',
-	})
-	.use(window.markdownItTocDoneRight, {
-		containerClass: "toc",
-		containerId: "toc",
-		listType: "ul",
-		listClass: "listClass",
-		itemClass: "itemClass",
-		linkClass: "linkClass",
-		callback: function (html, ast) {
-			// left.innerHTML = html;
-		},
 	});

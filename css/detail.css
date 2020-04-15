@@ -1,4 +1,4 @@
-.article-list .card-content {
+.article-list .card-content.main {
   padding: 0;
   overflow: hidden;
 }
@@ -59,4 +59,34 @@
 }
 .article-list .abstract .category-nav .level-item a:hover {
   color: #2d75ff;
+}
+#tocContainer #toc {
+  max-height: 80vh;
+  overflow: auto;
+}
+#tocContainer ul {
+  border-left: 1px solid #888;
+  list-style: none;
+}
+#tocContainer ul li {
+  padding-left: 1em;
+}
+#tocContainer #toc > ul:first-child {
+  border-left: none;
+}
+#tocContainer #toc > ul:first-child > li {
+  padding-left: 0;
+}
+#tocContainer a {
+  font-size: 0.16rem;
+  display: block;
+  padding: 0.03rem 0;
+  color: #24292e;
+  border-bottom: none;
+}
+#tocContainer a:hover,
+#tocContainer a:active,
+#tocContainer a:focus {
+  color: #2d75ff;
+  background-color: #f5f5f5;
 }

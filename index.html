@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="./css/markdown.css">
   <link rel="stylesheet" href="./css/index.css">
   <script src="./js/rem.js"></script>
-  <script src="./lib/lazysizes.min.js" async=""></script>
+  <!-- <script src="./lib/lazysizes.min.js" async=""></script> -->
 </head>
 
 <body>
@@ -64,7 +64,7 @@
     <div class="row visible-sm" style="height: 125px;"></div>
     <div class="row">
       <!-- 左边区域 -->
-      <div class="col-3-slg col-4-md  hidden-sm">
+      <div id="left-area" class="col-3-slg col-4-md hidden-sm">
         <div class="card-container">
           <div class="card-content personal-info">
             <div class="user-img">
@@ -136,12 +136,105 @@
         </div>
       </div>
       <!-- 中间文章列表 -->
-      <div class="col-6-slg col-8-md">
+      <div id="center-area" class="col-6-slg col-8-md">
         <article class="article-list">
           <div class="card-container">
             <div class="card-content">
               <div class="img-box">
-                <img data-src="https://picsum.photos/1440/900/?random=1&blur=2" class="lazyload" />
+                <img src="https://picsum.photos/1440/900/?random=1&blur=2" class="lazyload" />
+              </div>
+              <div class="abstract">
+                <div class="note-tips">
+                  <i class="iconfont icon-time-circle"></i>
+                  <h6 class="font-regular">2020-04-11</h6>
+                </div>
+                <a href="#" class="title">
+                  <h2>github Issue 作为博客微型数据库的应用</h2>
+                </a>
+                <p class="content">CDN的全称是Content Delivery
+                  Network，即内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。——百度百科
+                  放在Github的资源在国内加载速度比较慢，因此需要使用CDN加速来优化网站打开速度，jsDelivr + Github便是免费且好用的CDN，非常适合博客网站使用。</p>
+                <div class="category-nav">
+                  <div class="level-item">
+                    <i class="iconfont icon-folder"></i>
+                    <a class="" href="#">工具教程</a>
+                  </div>
+                  <div class="level-item">
+                    <i class="iconfont icon-tags"></i>
+                    <a class="" href="#">工具教程</a>
+                    <a class="" href="#">工具教程</a>
+                    <a class="" href="#">工具教程</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-container">
+            <div class="card-content">
+              <div class="img-box">
+                <img src="https://picsum.photos/1440/900/?random=1&blur=2" class="lazyload" />
+              </div>
+              <div class="abstract">
+                <div class="note-tips">
+                  <i class="iconfont icon-time-circle"></i>
+                  <h6 class="font-regular">2020-04-11</h6>
+                </div>
+                <a href="#" class="title">
+                  <h2>github Issue 作为博客微型数据库的应用</h2>
+                </a>
+                <p class="content">CDN的全称是Content Delivery
+                  Network，即内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。——百度百科
+                  放在Github的资源在国内加载速度比较慢，因此需要使用CDN加速来优化网站打开速度，jsDelivr + Github便是免费且好用的CDN，非常适合博客网站使用。</p>
+                <div class="category-nav">
+                  <div class="level-item">
+                    <i class="iconfont icon-folder"></i>
+                    <a class="" href="#">工具教程</a>
+                  </div>
+                  <div class="level-item">
+                    <i class="iconfont icon-tags"></i>
+                    <a class="" href="#">工具教程</a>
+                    <a class="" href="#">工具教程</a>
+                    <a class="" href="#">工具教程</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-container">
+            <div class="card-content">
+              <div class="img-box">
+                <img src="https://picsum.photos/1440/900/?random=1&blur=2" class="lazyload" />
+              </div>
+              <div class="abstract">
+                <div class="note-tips">
+                  <i class="iconfont icon-time-circle"></i>
+                  <h6 class="font-regular">2020-04-11</h6>
+                </div>
+                <a href="#" class="title">
+                  <h2>github Issue 作为博客微型数据库的应用</h2>
+                </a>
+                <p class="content">CDN的全称是Content Delivery
+                  Network，即内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。——百度百科
+                  放在Github的资源在国内加载速度比较慢，因此需要使用CDN加速来优化网站打开速度，jsDelivr + Github便是免费且好用的CDN，非常适合博客网站使用。</p>
+                <div class="category-nav">
+                  <div class="level-item">
+                    <i class="iconfont icon-folder"></i>
+                    <a class="" href="#">工具教程</a>
+                  </div>
+                  <div class="level-item">
+                    <i class="iconfont icon-tags"></i>
+                    <a class="" href="#">工具教程</a>
+                    <a class="" href="#">工具教程</a>
+                    <a class="" href="#">工具教程</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-container">
+            <div class="card-content">
+              <div class="img-box">
+                <img src="https://picsum.photos/1440/900/?random=1&blur=2" class="lazyload" />
               </div>
               <div class="abstract">
                 <div class="note-tips">
@@ -249,7 +342,7 @@
         </div>
       </div>
       <!-- 右边区域 -->
-      <div class="col-3-slg visible-slg">
+      <div id="right-area" class="col-3-slg visible-slg">
         <div class="card-container">
           <div class="card-content category-card recent-articles">
             <h6>最近文章</h6>
@@ -293,7 +386,7 @@
       </div>
     </div>
   </footer>
-  <script src="./lib/highlight.pack.js"></script>
+  <!-- <script src="./lib/highlight.pack.js"></script>
   <script src="./lib/markdown-it.min.js"></script>
   <script src="./lib/markdown-it-sub.min.js"></script>
   <script src="./lib/markdown-it-sup.min.js"></script>
@@ -303,7 +396,8 @@
   <script src="./lib/markdown-it-task-lists.min.js"></script>
   <script src="./lib/markdownItAnchor.umd.js"></script>
   <script src="./lib/markdownItTocDoneRight.umd.js"></script>
-  <script src="./js/markdown-init.js"></script>
+  <script src="./js/markdown-init.js"></script> -->
+  <script src="./js/fixed.js"></script>
 </body>
 
 </html>
