@@ -1,0 +1,36 @@
+#center-area .item-container {
+  position: relative;
+  width: 90%;
+  margin: 0.2rem auto;
+  height: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.05rem;
+  cursor: pointer;
+}
+#center-area .item-container img {
+  width: 100%;
+  transition: transform 0.5s;
+}
+#center-area .item-container .text-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.42rem;
+  line-height: 2rem;
+  transition: background 0.5s;
+}
+#center-area .item-container:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+#center-area .item-container:hover .text-container {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+#center-area .item-container:hover img {
+  transform: scale(1.1);
+}
