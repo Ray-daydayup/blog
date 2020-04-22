@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-19 09:18:28
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-19 10:45:29
+ * @LastEditTime : 2020-04-22 17:34:41
  * @FilePath     : \myblog\js\element.js
  * @Description  : file content
  */
@@ -34,7 +34,7 @@
 					? document.createTextNode(domObj.textNode)
 					: document.createTextNode("");
 				el.appendChild(textNode);
-				if (domObj.prop) {
+				if (domObj.prop && JSON.stringify(domObj.prop) !== "{}") {
 					var props = domObj.prop;
 					for (var propName in props) {
 						var propValue = props[propName];

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+
+<body>
+  <div class="card-container">
+    <div class="card-content tags-card">
+      <h6>标签</h6><a href="#">前端</a><a href="#">JS</a><a href="#">CSS</a><a href="#">HTML</a><a href="#">Vue</a><a
+        href="#">Node</a>
+    </div>
+  </div>
+
+  <script src="./js/element.js"></script>
+  <script>
+    var str =
+      `div[class=card-container]>div[class=card-content tags-card]>h6{标签}+a[href=#]{前端}+a[href=#]{JS}+a[href=#]{CSS}+a[href=#]{HTML}+a[href=#]{Vue}+a[href=#]{Node}`
+    /** 
+     * 符号含义: '>' 父子关系  '+' 兄弟关系  '[]' 属性  '{}' 文本  '()'优先运算
+     * 符号优先级：'()'大于 '>' 等于 '+' 大于 '[]' 等于 '{}'
+     * 解析思路 ：从左到右解析
+     *          - 任何符号之间的纯字母都是标签名  
+     *          - '()'解析的函数
+     *          - '[]'解析的函数
+     *          - '{}'解析的函数
+     */
+    generateDomObj(ast(str, 0)).forEach(item => {
+      element.appendChild("body", item);
+    })
+
+    function generateDomObj(astArr) {
+      const result = [];
+      const head = [];
+      let currentLevel = 0;
+      let pointer = result;
+      head.push(pointer);
+      astArr.forEach((item, index) => {
+        if (item.level > currentLevel) {
+          currentLevel = item.level;
+          astArr[index - 1].children = [];
+          pointer = astArr[index - 1].children;
+          head.push(pointer);
+        }
+        if (item.level < currentLevel) {
+          currentLevel = item.level;
+          pointer = head[currentLevel];
+          head.splice(currentLevel + 1, Infinity)
+        }
+        pointer.push(item);
+      })
+      return result
+    }
+
+    function ast(str, startLevel) {
+      const stack = [];
+      return match(str, '', startLevel)
+
+      function match(str, lastCharacter, startLevel) {
+        let level = startLevel;
+        const result = [];
+        var tagName = '';
+        var prop = {};
+        var textNode = '';
+        do {
+          if (str[0] === "+") {
+            lastCharacter = str[0];
+            str = str.replace('+', "");
+          }
+          if (str[0] === ">") {
+            lastCharacter = str[0];
+            str = str.replace('>', "");
+            level++;
+          }
+          if (str[0] === "(") {
+            // if (str[0] === lastCharacter) {
+            //   level++
+            // }
+            lastCharacter = str[0];
+            str = str.replace('(', "");
+            stack.push(level);
+          }
+          if (str[0] === ")") {
+            // if (str[0] === lastCharacter) {
+            //   level--
+            // }
+            lastCharacter = str[0];
+            str = str.replace(')', "");
+            level = stack.pop();
+          }
+          if (/\w/.test(str[0]) && str !== '') {
+            lastCharacter = str[0];
+            tagName = str.match(/\w+/)[0];
+            str = str.replace(/\w+/, "");
+          }
+          if (str[0] === "{") {
+            lastCharacter = str[0];
+            textNode = str.match(/\{(.+?)\}/)[1];
+            str = str.replace(/\{(.+?)\}/, "");
+          }
+          if (str[0] === "[") {
+            lastCharacter = str[0];
+            let arr = str.match(/\[(.+?)\]/)[1].split(',');
+            arr.forEach(item => {
+              let tempArr = item.split('=');
+              prop[tempArr[0]] = tempArr[1];
+            })
+            str = str.replace(/\[(.+?)\]/, "");
+          }
+        } while (str !== "" && str[0] !== ">" && str[0] !== "+" && str[0] !== ")");
+        if (tagName !== '') {
+          result.push({
+            level,
+            tagName,
+            prop,
+            textNode
+          })
+        }
+        if (str === "") {
+          return result
+        } else {
+          let tempArr = match(str, lastCharacter, level);
+          result.push(...tempArr)
+        }
+        return result
+      }
+    }
+
+    // var map = {
+    //   "(": ")"
+    // };
+    // var stack = [];
+    // var
+    // for (let i = 0; i < str.length; i++) {
+    //   if (str[i] === "(") {
+    //     stack.push(i);
+    //   } else if (str[i] === ")") {
+    //     [stack.length, stack.pop(), i]
+    //   }
+    // }
+    // var regex1 = /\((.+?)\)/; // () 小括号
+    // var regex2 = /\[(.+?)\]/; // [] 中括号
+    // var regex3 = /\{(.+?)\}/; // {} 花括号，大括号
+    // var regex4 = /\w+/; // 
+    // console.log(str.replace(/\[(.+?)\]/g, '').replace(/\{(.+?)\}/, ''));
+    // console.log(str);
+    // 输出是一个数组
+    // console.log(str.match(regex1));
+    // console.log(str.match(regex1)[0].match(regex1));
+    // console.log(str.match(regex2));
+    // console.log(str.match(regex3));
+    // console.log(str.match(regex4));
+    // console.log(str.match(regex4));
+    // console.log(str.match(regex4));
+  </script>
+</body>
+
+</html>
