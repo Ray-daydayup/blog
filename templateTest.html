@@ -1,25 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/grid.css">
+  <link rel="stylesheet" href="./css/iconfont.css">
+  <script src="./js/rem.js"></script>
 </head>
 
 <body>
-  <div class="card-container">
-    <div class="card-content tags-card">
-      <h6>标签</h6><a href="#">前端</a><a href="#">JS</a><a href="#">CSS</a><a href="#">HTML</a><a href="#">Vue</a><a
-        href="#">Node</a>
+  <header class="common-header">
+    <div class="container height-100 clearfix">
+      <div class="row">
+        <div class="col-2 logo">
+          <a href="./index.html">
+            <img src="./images/logo362x82.png" alt="">
+          </a>
+        </div>
+        <nav class="col-10 menu">
+          <div class="visible-lg clearfix">
+            <div class="menu-left fl">
+              <!-- <a href="#">首页</a>
+              <a href="#">归档</a>
+              <a href="#">标签</a>
+              <a href="#">分类</a>
+              <a href="#">关于</a> -->
+            </div>
+            <div class="menu-right fr">
+              <!-- <a href="#"><i class="iconfont icon-github-fill"></i></a>
+              <a href="#"><i class="iconfont icon-search"></i></a> -->
+            </div>
+          </div>
+          <div class="hidden-lg menu-not-lg">
+            <!-- <a href="#">首页</a>
+            <a href="#">归档</a>
+            <a href="#">标签</a>
+            <a href="#">分类</a>
+            <a href="#">关于</a>
+            <a href="#"><i class="iconfont icon-github-fill"></i></a>
+            <a href="#"><i class="iconfont icon-search"></i></a> -->
+          </div>
+        </nav>
+      </div>
     </div>
-  </div>
+  </header>
 
   <script src="./js/element.js"></script>
   <script>
-    var str =
-      `div[class=card-container]>div[class=card-content tags-card]>h6{标签}+a[href=#]{前端}+a[href=#]{JS}+a[href=#]{CSS}+a[href=#]{HTML}+a[href=#]{Vue}+a[href=#]{Node}`
+    var str1 =
+      `a[href=#]{首页}+a[href=#]{归档}+a[href=#]{标签}+a[href=#]{分类}+a[href=#]{关于}`
+    var str2 =
+      `(a[href=#]>i[class=iconfont icon-github-fill])+(a[href=#]>i[class=iconfont icon-search])`
     /** 
      * 符号含义: '>' 父子关系  '+' 兄弟关系  '[]' 属性  '{}' 文本  '()'优先运算
      * 符号优先级：'()'大于 '>' 等于 '+' 大于 '[]' 等于 '{}'
@@ -29,8 +63,13 @@
      *          - '[]'解析的函数
      *          - '{}'解析的函数
      */
-    generateDomObj(ast(str, 0)).forEach(item => {
-      element.appendChild("body", item);
+    generateDomObj(ast(str1)).forEach(item => {
+      element.appendChild(".common-header nav .menu-left", item);
+      element.appendChild(".common-header nav .menu-not-lg", item);
+    })
+    generateDomObj(ast(str2)).forEach(item => {
+      element.appendChild(".common-header nav .menu-right", item);
+      element.appendChild(".common-header nav .menu-not-lg", item);
     })
 
     function generateDomObj(astArr) {
@@ -56,7 +95,9 @@
       return result
     }
 
-    function ast(str, startLevel) {
+    function ast(str) {
+      let startLevel = 0;
+      // str = str.replace(/[\r\n]/g, "");
       const stack = [];
       return match(str, '', startLevel)
 
