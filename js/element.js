@@ -2,12 +2,108 @@
  * @Author       : Ray
  * @Date         : 2020-04-19 09:18:28
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-22 17:34:41
+ * @LastEditTime : 2020-04-23 10:16:15
  * @FilePath     : \myblog\js\element.js
  * @Description  : file content
  */
 (function (window) {
 	var element = {
+		generateDomObjArr: function (str) {
+			const result = [];
+			const head = [];
+			let currentLevel = 0;
+			let pointer = result;
+			head.push(pointer);
+			let astArr = ast(str);
+			astArr.forEach((item, index) => {
+				if (item.level > currentLevel) {
+					currentLevel = item.level;
+					astArr[index - 1].children = [];
+					pointer = astArr[index - 1].children;
+					head.push(pointer);
+				}
+				if (item.level < currentLevel) {
+					currentLevel = item.level;
+					pointer = head[currentLevel];
+					head.splice(currentLevel + 1, Infinity);
+				}
+				pointer.push(item);
+			});
+			return result;
+			function ast(str) {
+				let startLevel = 0;
+				const stack = [];
+				return match(str, "", startLevel);
+
+				function match(str, lastCharacter, startLevel) {
+					let level = startLevel;
+					const result = [];
+					var tagName = "";
+					var prop = {};
+					var textNode = "";
+					do {
+						if (str[0] === "+") {
+							lastCharacter = str[0];
+							str = str.replace("+", "");
+						}
+						if (str[0] === ">") {
+							lastCharacter = str[0];
+							str = str.replace(">", "");
+							level++;
+						}
+						if (str[0] === "(") {
+							lastCharacter = str[0];
+							str = str.replace("(", "");
+							stack.push(level);
+						}
+						if (str[0] === ")") {
+							lastCharacter = str[0];
+							str = str.replace(")", "");
+							level = stack.pop();
+						}
+						if (/\w/.test(str[0]) && str !== "") {
+							lastCharacter = str[0];
+							tagName = str.match(/\w+/)[0];
+							str = str.replace(/\w+/, "");
+						}
+						if (str[0] === "{") {
+							lastCharacter = str[0];
+							textNode = str.match(/\{(.+?)\}/)[1];
+							str = str.replace(/\{(.+?)\}/, "");
+						}
+						if (str[0] === "[") {
+							lastCharacter = str[0];
+							let arr = str.match(/\[(.+?)\]/)[1].split(",");
+							arr.forEach((item) => {
+								let tempArr = item.split("=");
+								prop[tempArr[0]] = tempArr[1];
+							});
+							str = str.replace(/\[(.+?)\]/, "");
+						}
+					} while (
+						str !== "" &&
+						str[0] !== ">" &&
+						str[0] !== "+" &&
+						str[0] !== ")"
+					);
+					if (tagName !== "") {
+						result.push({
+							level,
+							tagName,
+							prop,
+							textNode,
+						});
+					}
+					if (str === "") {
+						return result;
+					} else {
+						let tempArr = match(str, lastCharacter, level);
+						result.push(...tempArr);
+					}
+					return result;
+				}
+			}
+		},
 		insertBefore: function (parenSelector, refSelector, domObj) {
 			var parent = document.querySelector(parenSelector);
 			var refNode = document.querySelector(refSelector);
