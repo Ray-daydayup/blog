@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-15 11:02:26
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-15 11:37:40
+ * @LastEditTime : 2020-04-23 10:57:28
  * @FilePath     : \myblog\js\fixed.js
  * @Description  : 固定左右标签
  */
@@ -12,6 +12,9 @@ window.onscroll = function () {
 	fixCard("#right-area", "#center-area");
 	function fixCard(ID, scrollID) {
 		let card = document.querySelector(ID);
+		if (!card) {
+			return;
+		}
 		let startHeight =
 			card.offsetHeight - document.documentElement.clientHeight * 0.88;
 		let endHeight =

@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-19 09:18:28
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-23 10:16:15
+ * @LastEditTime : 2020-04-24 10:19:23
  * @FilePath     : \myblog\js\element.js
  * @Description  : file content
  */
@@ -109,12 +109,15 @@
 			var refNode = document.querySelector(refSelector);
 			parent.insertBefore(this.render(domObj), refNode);
 		},
-		appendChild: function (parenSelector, domObj) {
-			// console.log(this.render(domObj));
+		appendChild: function (parenSelector, domObj, isAll = false) {
 			if (parenSelector === "body") {
 				document.body.appendChild(this.render(domObj));
+			} else if (isAll) {
+				document.querySelectorAll(parenSelector).forEach((item) => {
+					item.appendChild(this.render(domObj));
+				});
 			} else {
-				var parent = document.querySelector(parenSelector);
+				let parent = document.querySelector(parenSelector);
 				parent.appendChild(this.render(domObj));
 			}
 		},
