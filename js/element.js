@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-19 09:18:28
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-24 10:19:23
+ * @LastEditTime : 2020-04-24 13:28:36
  * @FilePath     : \myblog\js\element.js
  * @Description  : file content
  */
@@ -75,7 +75,7 @@
 							lastCharacter = str[0];
 							let arr = str.match(/\[(.+?)\]/)[1].split(",");
 							arr.forEach((item) => {
-								let tempArr = item.split("=");
+								let tempArr = item.split('="');
 								prop[tempArr[0]] = tempArr[1];
 							});
 							str = str.replace(/\[(.+?)\]/, "");

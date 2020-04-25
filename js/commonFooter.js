@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-19 10:41:45
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-19 10:42:18
+ * @LastEditTime : 2020-04-24 12:25:33
  * @FilePath     : \myblog\js\commonFooter.js
  * @Description  : file content
  */
@@ -81,7 +81,7 @@
 										textNode: "留言",
 										prop: {
 											href:
-												"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=-oSKjJqfh5qfh4uOvpiRhpOfl5LQnZGT",
+												"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=-oSKjJqfh5qfh4uOvpiRhpOfl5LQnZGT",
 											target: "_blank",
 										},
 									},

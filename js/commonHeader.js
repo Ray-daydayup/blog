@@ -2,13 +2,13 @@
  * @Author       : Ray
  * @Date         : 2020-04-23 10:27:34
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-23 10:28:34
+ * @LastEditTime : 2020-04-24 13:34:00
  * @FilePath     : \myblog\js\commonHeader.js
  * @Description  : file content
  */
 (function () {
-	var str1 = `a[href=./index.html]{首页}+a[href=./archive.html]{归档}+a[href=./tags.html]{标签}+a[href=./categories.html]{分类}+a[href=./about.html]{关于}`;
-	var str2 = `(a[href=https://github.com/Ray-daydayup/blog,target=_blank]>i[class=iconfont icon-github-fill])+(a[href=javascript:;]>i[class=iconfont icon-search])`;
+	var str1 = `a[href="./index.html]{首页}+a[href="./archive.html]{归档}+a[href="./tags.html]{标签}+a[href="./categories.html]{分类}+a[href="./about.html]{关于}`;
+	var str2 = `(a[href="https://github.com/Ray-daydayup/blog,target="_blank]>i[class="iconfont icon-github-fill])+(a[href="javascript:;]>i[class="iconfont icon-search])`;
 	/**
 	 * 符号含义: '>' 父子关系  '+' 兄弟关系  '[]' 属性  '{}' 文本  '()'优先运算
 	 * 符号优先级：'()'大于 '>' 等于 '+' 大于 '[]' 等于 '{}'

@@ -13,11 +13,34 @@
   <link rel="stylesheet" href="./css/markdown.css">
   <link rel="stylesheet" href="./css/index.css">
   <script src="./js/rem.js"></script>
-  <!-- <script src="./lib/lazysizes.min.js" async=""></script> -->
+  <script src="./js/element.js"></script>
 </head>
 
 <body>
   <!-- 头部导航栏 -->
+  <div id="mask" class="mask">
+    <div class="spinner">
+      <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+    </div>
+  </div>
+
   <header class="common-header">
     <div class="container height-100 clearfix">
       <div class="row">
@@ -56,6 +79,11 @@
       <!-- 中间文章列表 -->
       <div id="center-area" class="col-6-slg col-8-md">
         <article class="article-list">
+          <!-- <div class="card-content loading">
+            <span class="animated bounce  infinite"></span>
+            <span class="animated bounce  delay-200ms infinite"></span>
+            <span class="animated bounce  delay-400ms infinite"></span>
+          </div> -->
           <div class="card-container">
             <div class="card-content">
               <div class="img-box">
@@ -108,10 +136,14 @@
       </div>
     </div>
   </div>
-  <script src="./js/element.js"></script>
+  <script>
+    function scriptLoaded() {
+      document.querySelector('#mask').style.display = 'none';
+    }
+  </script>
   <script src="./js/commonHeader.js"></script>
   <script src="./js/commonCard.js"></script>
-  <script src="./js/commonFooter.js"></script>
+  <script src="./js/commonFooter.js" onload="scriptLoaded()"></script>
   <script src="./js/fixed.js"></script>
 </body>
 
