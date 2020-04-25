@@ -13,10 +13,32 @@
   <link rel="stylesheet" href="./css/markdown.css">
   <link rel="stylesheet" href="./css/archive.css">
   <script src="./js/rem.js"></script>
-  <!-- <script src="./lib/lazysizes.min.js" async=""></script> -->
+  <script src="./js/element.js"></script>
 </head>
 
 <body>
+  <div id="mask" class="mask">
+    <div class="spinner">
+      <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+    </div>
+  </div>
   <!-- 头部导航栏 -->
   <header class="common-header">
     <div class="container height-100 clearfix">
@@ -48,67 +70,10 @@
     <div class="row">
       <!-- 左边区域 -->
       <div id="left-area" class="col-3-slg col-4-md hidden-sm">
-        <div class="card-container">
-          <div class="card-content personal-info">
-            <div class="user-img">
-              <img src="./favicon.ico" alt="">
-            </div>
-            <h2 class="font-regular">Raydaydayup</h2>
-            <p>👉好好学习，天天向上👈</p>
-            <nav class="row nav-statistics">
-              <!-- <div class="col-4-sm"></div> -->
-              <a href="#" class="col-4-sm">
-                <h6 class="font-regular">文章</h6>
-                <h2 class="font-regular">16</h2>
-              </a>
-              <a href="#" class="col-4-sm">
-                <h6 class="font-regular">分类</h6>
-                <h2 class="font-regular">5</h2>
-              </a>
-              <a href="#" class="col-4-sm">
-                <h6 class="font-regular">标签</h6>
-                <h2 class="font-regular">6</h2>
-              </a>
-            </nav>
-            <a href="#" class="row nav-github"><i class="iconfont icon-github-fill"></i><span>关注我</span></a>
-            <nav class="row nav-contact">
-              <a href="#" class="col-4-sm">
-                <i class="iconfont icon-QQ"></i>
-              </a>
-              <a href="#" class="col-4-sm">
-                <i class="iconfont icon-wechat-fill"></i>
-              </a>
-              <a href="#" class="col-4-sm">
-                <i class="iconfont icon-mail-fill"></i>
-              </a>
-            </nav>
-            <hr>
-            <div class="words">
-              <p class="font-heavy">应付生活中各种问题的勇气</p>
-              <p class="font-heavy">能说明一个人如何定义生活的意义</p>
-              <p>——阿德勒</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-container hidden-slg">
-          <div class="card-content category-card recent-articles">
-            <h6>最近文章</h6>
-            <a href="#">Github便是免费且好用的CDN，非常适合博客网站使用</a>
-            <a href="#">Github便是免费且好用的CDN</a>
-            <a href="#">响应式栅格</a>
-          </div>
-        </div>
-        <div class="card-container hidden-slg">
-          <div class="card-content tags-card">
-            <h6>标签</h6>
-            <a href="#">前端</a>
-            <a href="#">JS</a>
-            <a href="#">CSS</a>
-            <a href="#">HTML</a>
-            <a href="#">Vue</a>
-            <a href="#">Node</a>
-          </div>
-        </div>
+        <div class="card-container person-card-flag"></div>
+        <div class="card-container recent-card-flag hidden-slg"></div>
+        <div class="card-container category-card-flag hidden-slg"></div>
+        <div class="card-container tags-card-flag hidden-slg"></div>
       </div>
       <!-- 中间文章列表 -->
       <div id="center-area" class="col-6-slg col-8-md">
@@ -122,95 +87,20 @@
 
       </div>
       <div class="col-3-slg col-4-md  visible-sm">
-        <div class="card-container">
-          <div class="card-content personal-info">
-            <div class="user-img">
-              <img src="./favicon.ico" alt="">
-            </div>
-            <h2 class="font-regular">Raydaydayup</h2>
-            <p>👉好好学习，天天向上👈</p>
-            <nav class="row nav-statistics">
-              <!-- <div class="col-4-sm"></div> -->
-              <a href="#" class="col-4-sm">
-                <h6 class="font-regular">文章</h6>
-                <h2 class="font-regular">16</h2>
-              </a>
-              <a href="#" class="col-4-sm">
-                <h6 class="font-regular">分类</h6>
-                <h2 class="font-regular">5</h2>
-              </a>
-              <a href="#" class="col-4-sm">
-                <h6 class="font-regular">标签</h6>
-                <h2 class="font-regular">6</h2>
-              </a>
-            </nav>
-            <a href="#" class="row nav-github"><i class="iconfont icon-github-fill"></i><span>关注我</span></a>
-            <nav class="row nav-contact">
-              <a href="#" class="col-4-sm">
-                <i class="iconfont icon-QQ"></i>
-              </a>
-              <a href="#" class="col-4-sm">
-                <i class="iconfont icon-wechat-fill"></i>
-              </a>
-              <a href="#" class="col-4-sm">
-                <i class="iconfont icon-mail-fill"></i>
-              </a>
-            </nav>
-            <hr>
-            <div class="words">
-              <p class="font-heavy">应付生活中各种问题的勇气</p>
-              <p class="font-heavy">能说明一个人如何定义生活的意义</p>
-              <p>——阿德勒</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-container hidden-slg">
-          <div class="card-content category-card recent-articles">
-            <h6>最近文章</h6>
-            <a href="#">Github便是免费且好用的CDN，非常适合博客网站使用</a>
-            <a href="#">Github便是免费且好用的CDN</a>
-            <a href="#">响应式栅格</a>
-          </div>
-        </div>
-        <div class="card-container hidden-slg">
-          <div class="card-content tags-card">
-            <h6>标签</h6>
-            <a href="#">前端</a>
-            <a href="#">JS</a>
-            <a href="#">CSS</a>
-            <a href="#">HTML</a>
-            <a href="#">Vue</a>
-            <a href="#">Node</a>
-          </div>
-        </div>
+        <div class="card-container person-card-flag"></div>
+        <div class="card-container recent-card-flag hidden-slg"></div>
+        <div class="card-container category-card-flag hidden-slg"></div>
+        <div class="card-container tags-card-flag hidden-slg"></div>
       </div>
       <!-- 右边区域 -->
       <div id="right-area" class="col-3-slg visible-slg">
-        <div class="card-container">
-          <div class="card-content category-card recent-articles">
-            <h6>最近文章</h6>
-            <a href="#">Github便是免费且好用的CDN，非常适合博客网站使用</a>
-            <a href="#">Github便是免费且好用的CDN</a>
-            <a href="#">响应式栅格</a>
-          </div>
-        </div>
-        <div class="card-container">
-          <div class="card-content tags-card">
-            <h6>标签</h6>
-            <a href="#">前端</a>
-            <a href="#">JS</a>
-            <a href="#">CSS</a>
-            <a href="#">HTML</a>
-            <a href="#">Vue</a>
-            <a href="#">Node</a>
-          </div>
-        </div>
+        <div class="card-container recent-card-flag"></div>
+        <div class="card-container category-card-flag"></div>
+        <div class="card-container tags-card-flag"></div>
       </div>
     </div>
   </div>
-  <script src="./js/element.js"></script>
-  <script src="./js/commonHeader.js"></script>
-  <script src="./js/commonFooter.js"></script>
+  <script src="./js//loadScript.js"></script>
   <script src="./js/fixed.js"></script>
 </body>
 
