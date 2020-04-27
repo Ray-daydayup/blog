@@ -283,7 +283,8 @@ hr {
 }
 .category-card a {
   font-size: 0.14rem;
-  display: block;
+  display: inline-block;
+  width: 50%;
   padding: 0.03rem 0.1rem;
   color: #24292e;
   border-bottom: none;
@@ -307,6 +308,10 @@ hr {
 }
 .tags-card a:hover {
   color: #286cda;
+}
+.recent-articles a {
+  display: block;
+  width: 100%;
 }
 .recent-articles a::before {
   content: "-";
