@@ -2,20 +2,28 @@
  * @Author       : Ray
  * @Date         : 2020-04-24 09:19:29
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-27 10:58:11
+ * @LastEditTime : 2020-04-28 09:11:39
  * @FilePath     : \myblog\js\commonCard.js
  * @Description  : file content
  */
-(function () {
+(function (window) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			const data = JSON.parse(xhr.responseText);
 			const [categoryList, tagsList, articles] = data;
+			window.data = {
+				categoryList,
+				tagsList,
+				articles,
+			};
 			insertPersonCard(articles.length, categoryList.length, tagsList.length);
 			insertRecentCard(articles);
 			insertCategoryCard(categoryList);
 			insertTagsCard(tagsList);
+			if (document.querySelector("#articles-flag")) {
+				articles.forEach((item) => insertArticle(item, categoryList, tagsList));
+			}
 		}
 	};
 	xhr.open("GET", "./data/articles.json", true);
@@ -39,7 +47,7 @@
 	function insertRecentCard(recentArticle) {
 		return new Promise((resolve, reject) => {
 			const articleLink = recentArticle
-				.map((item) => `a[href="./detail.html?id=${item.id}]{${item.title}}`)
+				.map((item) => `a[href="./detail.html?url=${item.url}]{${item.title}}`)
 				.join("+");
 			const str = `div[class="card-content category-card recent-articles]>h6{最近文章}+(${articleLink})`;
 			element.appendChild(
@@ -79,46 +87,22 @@
 		});
 	}
 
-	function insertArticles(articles) {
+	function insertArticle(article, categoryList, tagsList) {
 		return new Promise((resolve, reject) => {
-			`<div class="card-container">
-      <div class="card-content">
-        <div class="img-box">
-          <img src="https://picsum.photos/1440/900/?random=1&blur=2"/>
-        </div>
-        <div class="abstract">
-          <div class="note-tips">
-            <i class="iconfont icon-time-circle"></i>
-            <h6 class="font-regular">2020-04-11</h6>
-          </div>
-          <a href="#" class="title">
-            <h2>github Issue 作为博客微型数据库的应用</h2>
-          </a>
-          <p class="content">CDN的全称是Content Delivery</p>
-          <div class="category-nav">
-            <div class="level-item">
-              <i class="iconfont icon-folder"></i>
-              <a href="#">工具教程</a>
-            </div>
-            <div class="level-item">
-              <i class="iconfont icon-tags"></i>
-              <a href="#">工具教程</a>
-              <a href="#">工具教程</a>
-              <a href="#">工具教程</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`;
 			const imgBox = `div[class="img-box]>img[src="https://picsum.photos/1440/900/?random=${Math.random()
 				.toString()
-				.substr(3)}&blur=2"]`;
-			const noteTips = `div[class="note-tips]>(i[class="iconfont icon-time-circle]+h6[]{})`;
-			element.appendChild(
-				".person-card-flag",
-				element.generateDomObjArr(str)[0],
-				true
+				.substr(3)}]`;
+			const noteTips = `(div[class="note-tips]>(i[class="iconfont icon-time-circle]+h6[class="font-regular]{${article.time}}))+(a[href="./detail.html?url=${article.url},class="title]>h2{${article.title}})+p{${article.abstract}}`;
+			const category = categoryList.find(
+				(item) => item.id === article.category
 			);
+			const tags = tagsList.filter((item) => article.tags.includes(item.id));
+			const tagsLink = tags
+				.map((item) => `a[href="./tags.html?id=${item.id}]{${item.title}}`)
+				.join("+");
+			const categoryNav = `div[class="category-nav]>(div[class="level-item]>i[class="iconfont icon-folder]+a[href="./categories.html?id=${category.id}]{${category.title}})+(div[class="level-item]>i[class="iconfont icon-tags]+${tagsLink})`;
+			const str = `div[class="card-container]>div[class="card-content]>(${imgBox})+div[class="abstract]>${noteTips}+${categoryNav}`;
+			element.appendChild("#articles-flag", element.generateDomObjArr(str)[0]);
 		});
 	}
-})();
+})(window);

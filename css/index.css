@@ -7,7 +7,8 @@
   width: 100%;
   overflow: hidden;
   text-align: center;
-  height: 2rem;
+  min-height: 2.5rem;
+  max-height: 3rem;
 }
 .article-list .img-box img {
   width: 100%;
@@ -50,6 +51,7 @@
   font-size: 0.18rem;
 }
 .article-list .abstract .category-nav .level-item a {
+  margin: 0 0.03rem;
   font-size: 0.12rem;
   padding: 0.03rem 0.1rem;
   border-radius: 0.15rem;

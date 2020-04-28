@@ -278,7 +278,8 @@ hr {
 .personal-info .words p:not(:last-child) {
   color: #276cda;
 }
-.category-card h6 {
+.category-card h6,
+.category-card h4 {
   margin-bottom: 0.1rem;
 }
 .category-card a {
@@ -293,7 +294,8 @@ hr {
   color: #286cda;
   background-color: #f5f5f5;
 }
-.tags-card h6 {
+.tags-card h6,
+.tags-card h4 {
   margin-bottom: 0.1rem;
 }
 .tags-card a {
