@@ -2,13 +2,11 @@
  * @Author       : Ray
  * @Date         : 2020-04-15 08:18:35
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-28 09:02:42
+ * @LastEditTime : 2020-04-28 20:17:14
  * @FilePath     : \myblog\js\detail.js
  * @Description  : 获取md文件
  */
 (function () {
-	// let url =
-	// console.log("window.location.href :>> ", GetQueryString("url"));
 	var parent = document.querySelector("#markdownBody");
 	var tocContainer = document.querySelector("#tocContainer");
 	md.use(window.markdownItTocDoneRight, {
@@ -31,13 +29,6 @@
 			parent.innerHTML = result;
 		}
 	};
-	xhr.open("GET", `./articles/${GetQueryString("url")}`, true);
+	xhr.open("GET", `./articles/${getQueryString("url")}`, true);
 	xhr.send();
-
-	function GetQueryString(name) {
-		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-		var r = window.location.search.substr(1).match(reg);
-		if (r != null) return r[2];
-		return null;
-	}
 })();

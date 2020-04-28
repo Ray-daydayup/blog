@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./css/markdown.css">
   <script src="./js/rem.js"></script>
   <script src="./js/element.js"></script>
+  <script src="./js/commonFunction.js"></script>
 </head>
 
 <body>
@@ -75,17 +76,7 @@
       </div>
       <!-- 中间文章列表 -->
       <div id="center-area" class="col-6-slg col-8-md">
-        <div class="card-container">
-          <div class="card-content tags-card">
-            <h4>标签</h4>
-            <a href="#">前端</a>
-            <a href="#">JS</a>
-            <a href="#">CSS</a>
-            <a href="#">HTML</a>
-            <a href="#">Vue</a>
-            <a href="#">Node</a>
-          </div>
-        </div>
+        <div class="card-container tags-flag"></div>
         <div class="card-container">
           <div class="card-content category-card recent-articles">
             <a href="./detail.html?url=test.md">2020-04-27&nbsp;&nbsp;&nbsp;github Issue作为博客微型数据库的应用</a>
@@ -106,7 +97,32 @@
       </div>
     </div>
   </div>
-  <script src="./js/loadScript.js"></script>
+  <script>
+    function insertMainTags(tagsList) {
+      return new Promise((resolve, reject) => {
+        const tagsLink = tagsList
+          .map((item) => `a[href="javascript:;,data-id="${item.id}]{${item.title}}`)
+          .join("+");
+        const str = `div[class="card-content tags-card]>h4{标签}+(${tagsLink})`;
+        element.appendChild(
+          "#center-area .tags-flag",
+          element.generateDomObjArr(str)[0]
+        );
+        const parent = document.querySelector('#center-area .tags-flag .tags-card');
+        parent.addEventListener('click', function (e) {
+          if (e.target.tagName === 'A') {
+            console.log(e.target.dataset.id);
+          } else {
+            return
+          }
+        })
+      });
+    }
+    // function name() {
+
+    // }
+  </script>
+  <script src="./js/main.js"></script>
   <script src="./js/fixed.js"></script>
 </body>
 

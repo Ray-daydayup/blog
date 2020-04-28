@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./css/archive.css">
   <script src="./js/rem.js"></script>
   <script src="./js/element.js"></script>
+  <script src="./js/commonFunction.js"></script>
 </head>
 
 <body>
@@ -74,8 +75,8 @@
       </div>
       <!-- 中间文章列表 -->
       <div id="center-area" class="col-6-slg col-8-md">
-        <div class="card-container">
-          <div class="card-content category-card recent-articles archive">
+        <div class="card-container archive-flag">
+          <!-- <div class="card-content category-card recent-articles archive">
             <h4>文章归档</h4>
             <h5 class="year"><span>2020</span></h5>
             <h5 class="month"><span>06</span></h5>
@@ -83,44 +84,7 @@
               <span class="font-heavy time">2020-04-11</span>
               <span>Github便是免费且好用的CDN</span>
             </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <h5 class="month"><span>05</span></h5>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-            <a href="#">
-              <span class="font-heavy time">2020-04-11</span>
-              <span>Github便是免费且好用的CDN</span>
-            </a>
-          </div>
+          </div> -->
         </div>
 
 
@@ -139,7 +103,24 @@
       </div>
     </div>
   </div>
-  <script src="./js/loadScript.js"></script>
+  <script>
+    function archive(articles) {
+      return new Promise((resolve, reject) => {
+        const articleLink = articles
+          .map(
+            (item) =>
+            `(a[href="./detail.html?url=${item.url}&id=${item.id}]>span[class="font-heavy time]{${item.time}}+span{${item.title}})`
+          )
+          .join("+");
+        const str = `div[class="card-content category-card recent-articles archive]>h4{文章归档}+(${articleLink})`;
+        element.appendChild(
+          ".archive-flag",
+          element.generateDomObjArr(str)[0]
+        );
+      });
+    }
+  </script>
+  <script src="./js/main.js"></script>
   <script src="./js/fixed.js"></script>
 </body>
 
