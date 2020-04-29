@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-19 09:18:28
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-24 13:28:36
+ * @LastEditTime : 2020-04-29 09:53:05
  * @FilePath     : \myblog\js\element.js
  * @Description  : file content
  */
@@ -103,11 +103,6 @@
 					return result;
 				}
 			}
-		},
-		insertBefore: function (parenSelector, refSelector, domObj) {
-			var parent = document.querySelector(parenSelector);
-			var refNode = document.querySelector(refSelector);
-			parent.insertBefore(this.render(domObj), refNode);
 		},
 		appendChild: function (parenSelector, domObj, isAll = false) {
 			if (parenSelector === "body") {

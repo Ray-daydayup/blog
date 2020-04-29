@@ -311,6 +311,9 @@ hr {
 .tags-card a:hover {
   color: #286cda;
 }
+.tags-card a.current {
+  color: #286cda;
+}
 .recent-articles a {
   display: block;
   width: 100%;

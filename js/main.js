@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-24 09:19:29
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-28 20:38:02
+ * @LastEditTime : 2020-04-29 09:35:14
  * @FilePath     : \myblog\js\main.js
  * @Description  : file content
  */
@@ -25,7 +25,10 @@
 				archive(articles);
 			}
 			if (location.href.includes("tags")) {
-				insertMainTags(tagsList);
+				insertMainTags(tagsList, articles);
+			}
+			if (location.href.includes("categories")) {
+				insertMainCategory(categoryList, articles);
 			}
 			if (document.querySelector("#articles-flag")) {
 				articles.forEach((item) => insertArticle(item, categoryList, tagsList));

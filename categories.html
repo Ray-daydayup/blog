@@ -8,7 +8,6 @@
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/grid.css">
-  <link rel="stylesheet" href="./css/animate.css">
   <link rel="stylesheet" href="./css/iconfont.css">
   <link rel="stylesheet" href="./css/markdown.css">
   <script src="./js/rem.js"></script>
@@ -56,13 +55,10 @@
           <div class="hidden-lg menu-not-lg"></div>
         </nav>
       </div>
-
     </div>
-
-
   </header>
   <!-- 主体内容 -->
-  <div class="container animated fadeIn">
+  <div class="container">
     <!-- 用来当作padding-top -->
     <div class="row visible-lg" style="height: 80px;"></div>
     <div class="row visible-md" style="height: 140px;"></div>
@@ -76,26 +72,9 @@
       </div>
       <!-- 中间文章列表 -->
       <div id="center-area" class="col-6-slg col-8-md">
-        <div class="card-container">
-          <div class="card-content tags-card">
-            <h4>分类</h4>
-            <a href="">前端</a>
-            <a href="">心情</a>
-            <a href="">生活</a>
-          </div>
-        </div>
-        <div class="card-container">
-          <div class="card-content loading">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="card-content category-card recent-articles">
-            <a href="./detail.html?url=test.md">2020-04-27&nbsp;&nbsp;&nbsp;github Issue作为博客微型数据库的应用</a>
-            <a href="./detail.html?url=test2.md">2020-04-27&nbsp;&nbsp;&nbsp;github Issue 作为博客微型数据库的应用2</a>
-          </div>
+        <div class="card-container tags-flag"></div>
+        <div class="card-container search-article-flag">
+          <div class="card-content category-card recent-articles"></div>
         </div>
 
       </div>
@@ -111,6 +90,63 @@
       </div>
     </div>
   </div>
+  <script>
+    function insertMainCategory(categoryList, articles) {
+      return new Promise((resolve, reject) => {
+        const categoryLink = categoryList
+          .map((item) => `a[href="javascript:;,data-id="${item.id}]{${item.title}}`)
+          .join("+");
+        const str = `div[class="card-content tags-card]>h4{分类}+(${categoryLink})`;
+        element.appendChild(
+          "#center-area .tags-flag",
+          element.generateDomObjArr(str)[0]
+        );
+        const parent = document.querySelector('#center-area .tags-flag .tags-card');
+        const categoryA = parent.querySelectorAll('a');
+        let id = getQueryString('id');
+        if (id) {
+          insertSearchArticle(searchArticle(articles, id * 1));
+          [...categoryA].find(item => item.dataset.id == id).classList.add('current');
+
+        } else {
+          insertSearchArticle(articles);
+        }
+        parent.addEventListener('click', function (e) {
+          if (e.target.tagName === 'A') {
+            categoryA.forEach(item => {
+              item.classList.remove('current')
+            })
+            e.target.classList.add('current')
+            let searchedArticles = searchArticle(articles, e.target.dataset.id * 1);
+            insertSearchArticle(searchedArticles);
+          } else {
+            return
+          }
+        })
+      });
+
+      function searchArticle(articles, id) {
+        return articles.filter(item => item.category === id)
+      }
+
+      function insertSearchArticle(searchedArticles) {
+        let articleLink = '';
+        if (searchedArticles.length === 0) {
+          articleLink = `h5{没有找到该分类的文章，或者该分类已删除}`;
+        } else {
+          articleLink = searchedArticles.map(item =>
+            `a[href="./detail.html?url=${item.url}&id=${item.id}]{${item.time}   ${item.title}}`).join(
+            '+');
+        }
+        const str = `div[class="card-content category-card recent-articles]>${articleLink}`;
+        element.replaceChild(
+          "#center-area .search-article-flag",
+          "#center-area .card-content.category-card.recent-articles",
+          element.generateDomObjArr(str)[0]
+        );
+      }
+    }
+  </script>
   <script src="./js/main.js"></script>
   <script src="./js/fixed.js"></script>
 </body>

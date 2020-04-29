@@ -8,7 +8,6 @@
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/grid.css">
-  <link rel="stylesheet" href="./css/animate.css">
   <link rel="stylesheet" href="./css/iconfont.css">
   <link rel="stylesheet" href="./css/markdown.css">
   <script src="./js/rem.js"></script>
@@ -62,7 +61,7 @@
 
   </header>
   <!-- 主体内容 -->
-  <div class="container animated fadeIn">
+  <div class="container">
     <!-- 用来当作padding-top -->
     <div class="row visible-lg" style="height: 80px;"></div>
     <div class="row visible-md" style="height: 140px;"></div>
@@ -77,11 +76,8 @@
       <!-- 中间文章列表 -->
       <div id="center-area" class="col-6-slg col-8-md">
         <div class="card-container tags-flag"></div>
-        <div class="card-container">
-          <div class="card-content category-card recent-articles">
-            <a href="./detail.html?url=test.md">2020-04-27&nbsp;&nbsp;&nbsp;github Issue作为博客微型数据库的应用</a>
-            <a href="./detail.html?url=test2.md">2020-04-27&nbsp;&nbsp;&nbsp;github Issue 作为博客微型数据库的应用2</a>
-          </div>
+        <div class="card-container search-article-flag">
+          <div class="card-content category-card recent-articles"></div>
         </div>
       </div>
 
@@ -98,7 +94,7 @@
     </div>
   </div>
   <script>
-    function insertMainTags(tagsList) {
+    function insertMainTags(tagsList, articles) {
       return new Promise((resolve, reject) => {
         const tagsLink = tagsList
           .map((item) => `a[href="javascript:;,data-id="${item.id}]{${item.title}}`)
@@ -109,18 +105,51 @@
           element.generateDomObjArr(str)[0]
         );
         const parent = document.querySelector('#center-area .tags-flag .tags-card');
+        const tagsA = parent.querySelectorAll('a');
+        let id = getQueryString('id');
+        if (id) {
+          insertSearchArticle(searchArticle(articles, id * 1));
+          [...tagsA].find(item => item.dataset.id == id).classList.add('current');
+
+        } else {
+          insertSearchArticle(articles);
+        }
+
         parent.addEventListener('click', function (e) {
           if (e.target.tagName === 'A') {
-            console.log(e.target.dataset.id);
+            tagsA.forEach(item => {
+              item.classList.remove('current')
+            })
+            e.target.classList.add('current')
+            let searchedArticles = searchArticle(articles, e.target.dataset.id * 1);
+            insertSearchArticle(searchedArticles);
           } else {
             return
           }
         })
       });
-    }
-    // function name() {
 
-    // }
+      function searchArticle(articles, id) {
+        return articles.filter(item => item.tags.includes(id))
+      }
+
+      function insertSearchArticle(searchedArticles) {
+        let articleLink = '';
+        if (searchedArticles.length === 0) {
+          articleLink = `h5{没有找到该标签的文章，或者该标签已删除}`;
+        } else {
+          articleLink = searchedArticles.map(item =>
+            `a[href="./detail.html?url=${item.url}&id=${item.id}]{${item.time}   ${item.title}}`).join(
+            '+');
+        }
+        const str = `div[class="card-content category-card recent-articles]>${articleLink}`;
+        element.replaceChild(
+          "#center-area .search-article-flag",
+          "#center-area .card-content.category-card.recent-articles",
+          element.generateDomObjArr(str)[0]
+        );
+      }
+    }
   </script>
   <script src="./js/main.js"></script>
   <script src="./js/fixed.js"></script>
