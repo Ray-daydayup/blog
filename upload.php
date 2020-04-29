@@ -1,3 +1,9 @@
 <?php
 header('content-type:text/html;charset=utf-8');
-echo '测试';
+
+// echo $_POST['jsonData'];
+$myfile = fopen("./data/articles.json", "w") or die("Unable to open file!");
+// $txt = "Mickey Mouse\n";
+fwrite($myfile, $_POST['jsonData']);
+
+fclose($myfile);
