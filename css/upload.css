@@ -139,19 +139,8 @@ hr {
   border-radius: 0.02rem;
 }
 .container {
-  min-height: 100%;
   background-color: #fff;
   line-height: 1.8;
-}
-.container::after {
-  content: "";
-  background-color: #e1e4e8;
-  width: 0.02rem;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  margin-left: -0.01rem;
 }
 .container .noteTip {
   color: #cf1322;
@@ -160,11 +149,27 @@ hr {
 .container h3 {
   margin-bottom: 0.02rem;
 }
+.container h4 > span span {
+  margin-right: 0.1rem;
+}
 .container input {
   margin: 5px 0;
   padding: 3px 5px;
 }
+.container select {
+  margin: 5px 0;
+  padding: 3px 5px;
+  width: 80%;
+}
+.container textarea {
+  margin: 5px 0;
+  padding: 3px 5px;
+  width: 80%;
+  min-height: 3rem;
+}
 .container .row > div {
+  max-height: 8rem;
+  overflow: auto;
   padding: 0.2rem;
 }
 .tags-card span {
@@ -188,4 +193,18 @@ hr {
 }
 .tags-card span i:hover {
   transform: scale(1.2);
+}
+#article-form {
+  position: relative;
+}
+#article-form .noteV {
+  color: #cf1322;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#article-form .submit-btn {
+  position: absolute;
+  right: 0;
+  top: -0.6rem;
 }

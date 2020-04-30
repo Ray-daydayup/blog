@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-29 10:22:33
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-29 20:29:14
+ * @LastEditTime : 2020-04-30 15:56:20
  * @FilePath     : \myblog\js\upload.js
  * @Description  : file content
  */
@@ -20,6 +20,13 @@
 				submitJson(categoryList, tagsList, articles);
 			});
 			insertItem(articles, "#articles", function () {
+				submitJson(categoryList, tagsList, articles);
+			});
+			insertSelect(categoryList, "#categorySelect", ".categorySelected");
+			insertSelect(tagsList, "#tagsSelect", ".tagsSelected");
+			submitArticle("#article-form", ".submit-btn", function (tempData) {
+				// console.log("tempData :>> ", tempData);
+				articles.unshift(tempData);
 				submitJson(categoryList, tagsList, articles);
 			});
 		}
@@ -43,8 +50,6 @@
 	function insertItem(list, selector, callback) {
 		let oldChildSelector = `${selector} .tags-card`;
 		let parent = updateItem(list, selector, oldChildSelector);
-
-		// const parent = document.getElementById(selector.replace("#",'')).getElementsByClassName('tags-card')[0];
 		const record = document.querySelector(`${selector}+form .record`);
 		const newItem = document.querySelector(`${selector}+form .newItem`);
 		const ensure = document.querySelector(`${selector}+form .ensure`);
@@ -176,6 +181,120 @@
 				element.generateDomObjArr(str)[0]
 			);
 			return document.querySelector(oldChildSelector);
+		}
+	}
+	/**
+	 * @description: 生成新增文章的标签和分类
+	 * @param {Array} list
+	 * @param {String} 下拉框id(#tagsSelect)
+	 * @param {String} note 提示的类名
+	 * @return:
+	 */
+	function insertSelect(list, selector, noteSelector) {
+		if (list.length === 0) {
+			return;
+		}
+		const str = list
+			.map((item) => `<option value="${item.id}">${item.title}</option>`)
+			.join("");
+		const select = document.querySelector(selector);
+		const noteTip = document.querySelector(noteSelector);
+		select.innerHTML = str;
+		const selectedOptions = select.selectedOptions;
+		if (selectedOptions.length > 0) {
+			noteTip.innerHTML = [...selectedOptions]
+				.map((item) => `<span>${item.text}</span>`)
+				.join("");
+		}
+		console.log("selectedOptions.length :>> ", selectedOptions.length);
+		select.oninput = function (e) {
+			if (selectedOptions.length > 0) {
+				noteTip.innerHTML = [...selectedOptions]
+					.map((item) => `<span>${item.text}</span>`)
+					.join("");
+			}
+		};
+	}
+
+	/**
+	 * @description: 绑定提交事件，获取
+	 * @param {String} 表单id选择器
+	 * @param {String} 按钮类选择器
+	 * @param {Function} 回调函数
+	 * @return:
+	 */
+	function submitArticle(formSelector, btnSelector, callback) {
+		const submitBtn = document.querySelector(`${formSelector} ${btnSelector}`);
+		const form = document.querySelector(formSelector);
+		const formElements = form.querySelectorAll(`${formSelector} [name]`);
+		const noteV = form.querySelector(".noteV");
+		const fileInput = form.querySelector('[name="file"]');
+		fileInput.oninput = function () {
+			console.log("this.files[0] :>> ", this.files[0]);
+			form.querySelector('[name="title"]').value = this.files[0].name.replace(
+				".md",
+				""
+			);
+			form.querySelector('[name="time"]').value = formatDate(
+				new Date(this.files[0].lastModified)
+			);
+		};
+		submitBtn.addEventListener("click", function (e) {
+			let tempData = { id: Date.now() };
+			let fileElement = [];
+			let flag = [...formElements].every((item) => {
+				if (item.name === "file") {
+					if (item.files.length === 0) {
+						noteV.value = "请上传文件";
+						return false;
+					}
+					fileElement.push(item.files[0]);
+					tempData["url"] = item.files[0].name;
+				} else if (item.name === "tags") {
+					if (item.value === "") {
+						noteV.value = "未选标签";
+						return false;
+					}
+					tempData[item.name] = [...item.selectedOptions].map(
+						(item) => item.value * 1
+					);
+				} else if (item.name === "category") {
+					tempData[item.name] = item.value * 1;
+				} else {
+					if (item.value === "") {
+						noteV.value = "标题or日期or摘要未填";
+						return false;
+					}
+					tempData[item.name] = item.value;
+				}
+				return true;
+			});
+			if (!flag) {
+				return;
+			}
+			noteV.value = "";
+			callback(tempData);
+			let formData = new FormData();
+			formData.append("file", fileElement[0]);
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					console.log(xhr.responseText);
+				}
+			};
+
+			xhr.open("POST", "./uploadFile.php", true);
+			xhr.send(formData);
+		});
+		function formatDate(now) {
+			let year = now.getFullYear();
+			let month =
+				now.getMonth() + 1 >= 10
+					? now.getMonth() + 1
+					: `0${now.getMonth() + 1}`;
+			let date = now.getDate() >= 10 ? now.getDate() : `0${now.getDate()}`;
+			console.log(year);
+			return year + "-" + month + "-" + date;
 		}
 	}
 })();

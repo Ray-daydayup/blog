@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ray&#39;s Blog</title>
+  <title>Ray&#39;s Blog-upload</title>
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./css/upload.css">
   <link rel="stylesheet" href="./css/grid.css">
@@ -53,47 +53,34 @@
     <hr>
     <div class="row">
       <div class="col-6-md">
+        <h3>新增文章</h3>
+        <h4>上传文章</h4>
+        <form id="article-form" name="article-form">
+          <input type="text" class="noteV" disabled>
+          <input type="file" name="file" accept=".md" form="article-form">
+          <h4>文章标题</h4>
+          <input type="text" name="title" form="article-form" placeholder="请填写文章标题">
+          <h4>选择日期</h4>
+          <input type="date" name="time" form="article-form">
+          <h4>分类：<span class="categorySelected"></span></h4>
+          <select name="category" id="categorySelect" form="article-form"></select>
+          <h4>标签：<span class="tagsSelected"></span></h4>
+          <select name="tags" multiple id="tagsSelect" form="article-form"></select>
+          <h4>文章摘要</h4>
+          <textarea name="abstract" placeholder="请输入摘要" form="article-form"></textarea>
+          <input type="button" class="submit-btn" value="提交文章">
+        </form>
+      </div>
+      <div class="col-6-md">
         <h3>文章管理</h3>
         <div id="articles">
           <div class="tags-card"></div>
         </div>
         <form>
-          <div class="record">
-
-          </div>
+          <div class="record"></div>
           <input class="submit" type="button" value="提交更改">
           <input class="reset" type="button" value="重置">
         </form>
-      </div>
-      <div class="col-6-md">
-        <h3>新增文章</h3>
-        <h4>上传文章</h4>
-        <input type="file" name="file">
-        <h4>文章标题</h4>
-        <input type="text" name="title" placeholder="请填写文章标题">
-        <h4>选择日期</h4>
-        <input type="date" name="time">
-        <h4>分类</h4>
-        <input type="radio" name="category" id="category1">
-        <label for="category1">摄影</label>
-        <input type="radio" name="category" id="category2">
-        <label for="category2">心情</label>
-        <input type="radio" name="category" id="category3">
-        <label for="category3">前端</label>
-        <h4>标签</h4>
-        <input type="checkbox" name="tags" id="tag1">
-        <label for="tag1">HTML</label>
-        <input type="checkbox" name="tags" id="tag2">
-        <label for="tag2">JS</label>
-        <input type="checkbox" name="tags" id="tag3">
-        <label for="tag3">CSS</label>
-        <input type="checkbox" name="tags" id="tag4">
-        <label for="tag4">Node</label>
-        <input type="checkbox" name="tags" id="tag5">
-        <label for="tag5">Vue</label>
-        <h4>文章摘要</h4>
-        <textarea name="abstract" placeholder="请输入摘要" id=""></textarea>
-
       </div>
     </div>
   </div>

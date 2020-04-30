@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-28 19:45:56
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-28 20:14:17
+ * @LastEditTime : 2020-04-30 09:38:06
  * @FilePath     : \myblog\js\commonFunction.js
  * @Description  : file content
  */
@@ -192,11 +192,17 @@ function insertArticle(article, categoryList, tagsList) {
 			.substr(3)}]`;
 		const noteTips = `(div[class="note-tips]>(i[class="iconfont icon-time-circle]+h6[class="font-regular]{${article.time}}))+(a[href="./detail.html?url=${article.url}&id=${article.id},class="title]>h2{${article.title}})+p{${article.abstract}}`;
 		const category = categoryList.find((item) => item.id === article.category);
+		let categoryNav = "";
 		const tags = tagsList.filter((item) => article.tags.includes(item.id));
 		const tagsLink = tags
 			.map((item) => `a[href="./tags.html?id=${item.id}]{${item.title}}`)
 			.join("+");
-		const categoryNav = `div[class="category-nav]>(div[class="level-item]>i[class="iconfont icon-folder]+a[href="./categories.html?id=${category.id}]{${category.title}})+(div[class="level-item]>i[class="iconfont icon-tags]+${tagsLink})`;
+		if (typeof category == "undefined") {
+			categoryNav = `div[class="category-nav]>(div[class="level-item]>i[class="iconfont icon-folder]+a[href="javascript:;]{未获取到分类})+(div[class="level-item]>i[class="iconfont icon-tags]+${tagsLink})`;
+		} else {
+			categoryNav = `div[class="category-nav]>(div[class="level-item]>i[class="iconfont icon-folder]+a[href="./categories.html?id=${category.id}]{${category.title}})+(div[class="level-item]>i[class="iconfont icon-tags]+${tagsLink})`;
+		}
+
 		const str = `div[class="card-container]>div[class="card-content]>(${imgBox})+div[class="abstract]>${noteTips}+${categoryNav}`;
 		element.appendChild("#articles-flag", element.generateDomObjArr(str)[0]);
 	});
