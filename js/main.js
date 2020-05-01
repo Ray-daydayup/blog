@@ -2,7 +2,7 @@
  * @Author       : Ray
  * @Date         : 2020-04-24 09:19:29
  * @LastEditors  : Ray
- * @LastEditTime : 2020-04-29 09:35:14
+ * @LastEditTime : 2020-04-30 16:58:00
  * @FilePath     : \myblog\js\main.js
  * @Description  : file content
  */
@@ -36,6 +36,6 @@
 			document.querySelector("#mask").style.display = "none";
 		}
 	};
-	xhr.open("GET", "./data/articles.json", true);
+	xhr.open("GET", "./data/articles.txt", true);
 	xhr.send();
 })();
